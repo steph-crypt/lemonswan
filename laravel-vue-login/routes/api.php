@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// use App\Models\User;
+//
+// Route::middleware(['auth:sanctum'])->group(function () {
+//   //...
+//     Route::get('/users/{id}', function ($id) {
+//       return User::findOrFail($id);
+//   });
+// });
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

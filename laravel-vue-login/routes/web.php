@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any?}', [
-    function () {
+Route::post('users', 'UserController@store');
+
+Route::get('users', 'UserController@get');
+
+Route::delete('users/{id}', 'UserController@delete');
+
+ Route::get('/{any?}', [
+     function () {
         return view('welcome');
-    }
-])->where('any', '.*');
+     }
+ ])->where('any', '.*');

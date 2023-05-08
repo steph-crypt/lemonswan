@@ -10,9 +10,24 @@
 </head>
 
 <body>
-    <div id="app" class="min-h-screen flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-premium-gradient">
+    <div id="app" class="min-h-screen text-center flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-premium-gradient">
         <login />
     </div>
         @vite('resources/js/app.js')
 </body>
+
+
+<style lang="scss">
+
+#app {
+text-align: center;
+color: #2c3e50;
+background: rgb(30,34,42);
+background: linear-gradient(270deg, rgba(30,34,42,1) 0%, rgba(30,34,42,1) 24%, rgba(41,44,51,1) 40%, rgba(41,44,51,1) 58%, rgba(30,34,42,1) 72%, rgba(30,34,42,1) 100%);
+}
+
+</style>
+
+
+
 

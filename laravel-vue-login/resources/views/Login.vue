@@ -21,7 +21,7 @@
                         </svg>
                     </div>
                     <input
-                        class="rounded-lg border placeholder-italic active:outline-none text-body w-full py-2 pl-9 bg-white border-gray-500 text-gray-900 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+                        class="rounded-lg border placeholder-italic active:outline-none text-body min-w-fit py-2 pl-9 bg-white border-gray-500 text-gray-900 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
                         type="text" placeholder="Ihre E-Mail-Adresse" name="email" autocomplete="email"
                         inputmode="email" data-test="email" v-model="input.password">
                 </div>
@@ -74,6 +74,7 @@ export default {
     },
     methods: {
         login() {
+            this.$store.dispatch('fetchUsers')
             if (this.input.username !== "" && this.input.password !== "") {
                 if (this.input.username === this.$parent.mockAccount.username && this.input.password === this.$parent.mockAccount.password) {
                     this.$emit("authenticated", true);
@@ -89,4 +90,13 @@ export default {
 }
 </script>
 
+<style scoped>
+
+
+
+nav {
+    padding: 7px !important;
+}
+
+</style>
 

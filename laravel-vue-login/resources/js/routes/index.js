@@ -1,5 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../../views/Login.vue'
+import Login from '../../views/Login.vue';
+import DashBoard from '../../views/DashBoard.vue';
+//import * as store from "../../store/Auth";
+//import Vue from "vue";
+//import store from "@/store/index";
+// import VueRouter from "vue-router";
+// Vue.use(VueRouter);
+
 
 const routes = [
     {
@@ -10,10 +17,8 @@ const routes = [
     {
         path: '/dash-board',
         name: 'dash-board',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../../views/DashBoard.vue')
+        meta: { requiresAuth: true },
+        component: DashBoard
     }
 ]
 
@@ -22,5 +27,25 @@ const router = createRouter({
     routes
 })
 
+
+// router.beforeEach((to, from, next) => {
+//     const authUser = store.getters["auth/authUser"];
+//     const reqAuth = to.matched.some((record) => record.meta.requiresAuth);
+//     const loginQuery = { path: "/login", query: { redirect: to.fullPath } };
+//
+//     if (reqAuth && !authUser) {
+//         store.dispatch("auth/getAuthUser").then(() => {
+//             if (!store.getters["auth/authUser"]) next(loginQuery);
+//             else next();
+//         });
+//     } else {
+//         next(); // make sure to always call next()!
+//     }
+//     next();
+// });
+
+
+
 export default router
+
 
