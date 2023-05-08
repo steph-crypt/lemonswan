@@ -23,7 +23,7 @@
                     <input
                         class="rounded-lg border placeholder-italic active:outline-none text-body min-w-fit py-2 pl-9 bg-white border-gray-500 text-gray-900 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
                         type="text" placeholder="Ihre E-Mail-Adresse" name="email" autocomplete="email"
-                        inputmode="email" data-test="email" v-model="input.password">
+                        inputmode="email" data-test="email" v-model="input.email">
                 </div>
                 <div class="relative rounded-md focus-within:text-gray-900 text-gray-500">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -37,66 +37,85 @@
                     <input
                         class="rounded-lg border placeholder-italic active:outline-none text-body w-full py-2 pl-9 bg-white border-gray-500 text-gray-900 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
                         type="password" placeholder="Ihr Passwort" name="password" autocomplete="current-password"
-                        inputmode="text" data-test="password" v-model="input.username">
+                        inputmode="text" data-test="password" v-model="input.password">
                 </div>
-                <nav>
-                    <router-link to="/dash-board">
-                        <button
-                            class="flex justify-center items-center shadow-md shadow-inner hover:shadow-button-hover active:shadow-button-active text-white active:bg-red-dark bg-blend-multiply bg-gradient-to-b from-button-gradient-from to-button-gradient-to py-1 rounded-lg text-button font-semibold w-full font-semibold text-button mt-6 bg-rose-600"
-                            type="button" v-on:click="login()">
-                            <div class="flex row justify-center items-center py-2 px-20 w-max">
-                                <svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg"
-                                     class="mr-2 h-3.5 fill-white">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M2.4999 5.7001V4.1001C2.4999 3.03923 2.92133 2.02182 3.67148 1.27167C4.42162 0.521525 5.43904 0.100098 6.4999 0.100098C7.56077 0.100098 8.57818 0.521525 9.32833 1.27167C10.0785 2.02182 10.4999 3.03923 10.4999 4.1001V5.7001C10.9242 5.7001 11.3312 5.86867 11.6313 6.16873C11.9313 6.46878 12.0999 6.87575 12.0999 7.3001V11.3001C12.0999 11.7244 11.9313 12.1314 11.6313 12.4315C11.3312 12.7315 10.9242 12.9001 10.4999 12.9001H2.4999C2.07556 12.9001 1.66859 12.7315 1.36853 12.4315C1.06847 12.1314 0.899902 11.7244 0.899902 11.3001V7.3001C0.899902 6.87575 1.06847 6.46878 1.36853 6.16873C1.66859 5.86867 2.07556 5.7001 2.4999 5.7001ZM8.8999 4.1001V5.7001H4.0999V4.1001C4.0999 3.46358 4.35276 2.85313 4.80285 2.40304C5.25293 1.95295 5.86338 1.7001 6.4999 1.7001C7.13642 1.7001 7.74687 1.95295 8.19696 2.40304C8.64705 2.85313 8.8999 3.46358 8.8999 4.1001Z"></path>
-                                </svg>
-                                <span class="text-white">Einlogin</span>
-                            </div>
-                        </button>
-                    </router-link>
-                </nav>
+                <button
+                    class="flex justify-center items-center shadow-md shadow-inner hover:shadow-button-hover active:shadow-button-active text-white active:bg-red-dark bg-blend-multiply bg-gradient-to-b from-button-gradient-from to-button-gradient-to py-1 rounded-lg text-button font-semibold w-full font-semibold text-button mt-6 bg-rose-600"
+                    type="button" v-on:click="getUser">
+                    <div class="flex row justify-center items-center py-2 px-20 w-max">
+                        <svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg"
+                             class="mr-2 h-3.5 fill-white">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M2.4999 5.7001V4.1001C2.4999 3.03923 2.92133 2.02182 3.67148 1.27167C4.42162 0.521525 5.43904 0.100098 6.4999 0.100098C7.56077 0.100098 8.57818 0.521525 9.32833 1.27167C10.0785 2.02182 10.4999 3.03923 10.4999 4.1001V5.7001C10.9242 5.7001 11.3312 5.86867 11.6313 6.16873C11.9313 6.46878 12.0999 6.87575 12.0999 7.3001V11.3001C12.0999 11.7244 11.9313 12.1314 11.6313 12.4315C11.3312 12.7315 10.9242 12.9001 10.4999 12.9001H2.4999C2.07556 12.9001 1.66859 12.7315 1.36853 12.4315C1.06847 12.1314 0.899902 11.7244 0.899902 11.3001V7.3001C0.899902 6.87575 1.06847 6.46878 1.36853 6.16873C1.66859 5.86867 2.07556 5.7001 2.4999 5.7001ZM8.8999 4.1001V5.7001H4.0999V4.1001C4.0999 3.46358 4.35276 2.85313 4.80285 2.40304C5.25293 1.95295 5.86338 1.7001 6.4999 1.7001C7.13642 1.7001 7.74687 1.95295 8.19696 2.40304C8.64705 2.85313 8.8999 3.46358 8.8999 4.1001Z"></path>
+                        </svg>
+                        <span class="text-white">Einloggen</span>
+                    </div>
+                </button>
             </div>
         </div>
-        <router-view/>
+
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    name: 'Login',
+
+    name: 'User',
     data() {
         return {
             input: {
-                username: "",
+                email: "",
                 password: ""
-            }
+            },
+            users: {},
         }
     },
     methods: {
-        login() {
-            this.$store.dispatch('fetchUsers')
-            if (this.input.username !== "" && this.input.password !== "") {
-                if (this.input.username === this.$parent.mockAccount.username && this.input.password === this.$parent.mockAccount.password) {
-                    this.$emit("authenticated", true);
-                    this.$router.replace({name: "secure"});
+        //comment out function gets already logged-in users and attempts to verify them.
+        // getUser() {
+        //     axios.get('/list')
+        //         .then((response) => {
+        //             const users = response.data.users
+        //             users.map(user => {
+        //                 if (this.input.email !== "" && this.input.password !== "") {
+        //                     console.log("filled")
+        //                     if (this.input.email === user.email) {
+        //                         axios.post('/auth', {
+        //                             email: this.input.email,
+        //                             password: this.input.password
+        //                         }).then((response) => {
+        //                             if (response.data.statusText === 'OK') {
+        //                                 console.log("Success")
+        //                                 this.$router.push({path: '/dash-board'});
+        //                             } else {
+        //                                 console.log("Password Invalid");
+        //                                 alert("Password Invalid");
+        //                             }
+        //                         })
+        //                     }
+        //                 }
+        //             })
+        //         })
+        // }
+        getUser() {
+            axios.post('/auth', {
+                email: this.input.email,
+                password: this.input.password
+            }).then((response) => {
+                console.log(response)
+                //should be response.data.statusText === 'OK'
+                if (response.statusText === 'OK') {
+                    this.$router.push({path: '/dash-board'});
                 } else {
-                    console.log("The username and / or password is incorrect");
+                    console.log("Password Invalid");
+                    alert("Password Invalid");
                 }
-            } else {
-                console.log("A username and password must be present");
-            }
+            })
         }
     }
 }
 </script>
 
-<style scoped>
-
-
-
-nav {
-    padding: 7px !important;
-}
-
-</style>
 

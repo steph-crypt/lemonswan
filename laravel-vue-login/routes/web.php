@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('users', 'UserController@store');
-
-Route::get('users', 'UserController@get');
-
-Route::delete('users/{id}', 'UserController@delete');
+Route::get('list', [UserController::class, 'list']);
+Route::post('auth', [UserController::class, 'auth']);
 
  Route::get('/{any?}', [
      function () {

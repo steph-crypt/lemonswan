@@ -1,48 +1,39 @@
-
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
 
-  public function index()
+   public function list()
+      {
+           return response()->json([
+                'users' => \App\Models\User::latest()->get()
+           ]);
+
+      }
+
+    public function auth(Request $request)
     {
-        return view('users');
+
+      $data = $request->json()->all();
+
+      $posted_password = $data['password'];
+      $posted_email = $data['email'];
+
+      $hashed_password = Hash::make($posted_password);
+      $authed_user = DB::table('users')->where([['email', '=', $posted_email],
+      ['password', '=', $hashed_password]])->first();
+
+    if ($authed_user) {
+        return response()-> json([$authed_user]);
+      }
+      return response()-> json([ 'statusText' => 'FAIL']);
     }
-
-    public function get(Request $request)
-    {
-        $posts = User::orderBy('created_at', 'desc')->get();
-        return response()->json($users);
-    }
-
-    public function store(Request $request)
-    {
-        $user = User::create($request->all());
-
-        return response()->json($user);
-    }
-
-//     public function logIn(Request $request)
-//     {
-//         $this->validate($request, [
-//             'name' => 'required',
-//             'email' => 'required|email|unique:users',
-//             'password' => 'required'
-//         ]);
-//
-//         $user = new User([
-//             'name' => $request->input('name'),
-//             'email' => $request->input('email'),
-//             'password' => bcrypt($request->input('password')),
-//
-//         ]);
-//         $user->save();
-//         return response()->json([
-//             'message' => 'user successfully logged in!'
-//         ], 201);
-//     }
 }
+
+
+

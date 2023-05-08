@@ -17,7 +17,7 @@
             </nav>
         </div>
         <div class="bg-white rounded-2xl my-2 mx-20 h-screen">
-            <span class="text-black">Welcome to LemonSwan</span>
+            <span class="text-black pt-2">Welcome to LemonSwan</span>
         </div>
         <router-view/>
     </div>

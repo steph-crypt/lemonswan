@@ -18,7 +18,7 @@
 
 
 <style lang="scss">
-
+/* Some styles are appended as I was unsure how to invoke them successfully in tailwind  */
 #app {
 text-align: center;
 color: #2c3e50;

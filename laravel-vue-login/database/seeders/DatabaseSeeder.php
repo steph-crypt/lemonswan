@@ -10,9 +10,6 @@ use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
     DB::table('users')->insert([
@@ -20,14 +17,5 @@ class DatabaseSeeder extends Seeder
              'email' => Str::random(10).'@gmail.com',
              'password' => Hash::make('password'),
     ]);
-//     \App\Models\User::create(['id' => 1, 'name' => 'User1', 'email' => 'user1@gmail.com', 'password' => 'password']);
-
-//         \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
     }
 }
