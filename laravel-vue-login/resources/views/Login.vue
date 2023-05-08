@@ -104,12 +104,10 @@ export default {
                 email: this.input.email,
                 password: this.input.password
             }).then((response) => {
-                console.log(response)
                 //should be response.data.statusText === 'OK'
                 if (response.statusText === 'OK') {
                     this.$router.push({path: '/dash-board'});
                 } else {
-                    console.log("Password Invalid");
                     alert("Password Invalid");
                 }
             })
